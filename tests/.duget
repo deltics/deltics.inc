@@ -1,6 +1,6 @@
 {
   references: [
   	"&..\\.duspec",
-    "deltics.smoketest:2.0.0"
+    "deltics.smoketest:2.0.1"
   ]
 }
