@@ -3,6 +3,7 @@ increment: None
 next-version: 1.0.0
 branches:
   master:
+    mode: ContinuousDelivery
     regex: master
     tag: 
   develop:
