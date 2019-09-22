@@ -8,7 +8,7 @@ steps:
 
     if (Test-Path $exe)
     {
-        $xml = Join-Path '.results' 'delphi.${{ parameters.delphiVersion }}.${{ parameters.platform }}.xml'
+        $xml = Join-Path '.results' 'test-results.xml'
         $cmd = $exe + " -xunit2:$xml -delphiVersion:${{ parameters.delphiVersion }}"
 
         Invoke-Expression $cmd
