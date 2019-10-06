@@ -12,7 +12,6 @@ resources:
     - repository: congress
       type: git
       name: congress/templates
-      ref: refs/heads/develop
 
 pool:
   name: $(AgentPool)
