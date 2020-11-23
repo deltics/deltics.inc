@@ -1,0 +1,12 @@
+parameters:
+  delphiVersion: ''
+  platform: 'x86'
+
+steps:
+- template: delphi-build.yml@templates
+  parameters:
+    delphiVersion: ${{ parameters.delphiVersion }}
+    platform: ${{ parameters.platform }}
+    project: tests\test
+    preBuildInline: duget restore --noUnpack
+    postBuildInline: Rename-Item .bin\test.exe test.${{ parameters.DelphiVersion }}.${{ parameters.platform }}.exe
