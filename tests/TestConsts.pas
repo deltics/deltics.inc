@@ -32,6 +32,7 @@ interface
     DELPHI_10_1 = 310;
     DELPHI_10_2 = 320;
     DELPHI_10_3 = 330;
+    DELPHI_10_4 = 340;
 
     COMPILER_VERSION = {$ifdef VER80}  DELPHI_1 {$endif}
                        {$ifdef VER90}  DELPHI_2 {$endif}
@@ -66,6 +67,7 @@ interface
                        {$ifdef VER310} DELPHI_10_1 {$endif}
                        {$ifdef VER320} DELPHI_10_2 {$endif}
                        {$ifdef VER330} DELPHI_10_3 {$endif}
+                       {$ifdef VER340} DELPHI_10_4 {$endif}
                        ;
 
 implementation

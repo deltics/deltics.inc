@@ -58,7 +58,8 @@ implementation
                                    {$ifdef DELPHI10' } '10'    {$endif}
                                    {$ifdef DELPHI10_1'} '10.1' {$endif}
                                    {$ifdef DELPHI10_2'} '10.2' {$endif}
-                                   {$ifdef DELPHI10_3'} '10.3' {$endif};
+                                   {$ifdef DELPHI10_3'} '10.3' {$endif}
+                                   {$ifdef DELPHI10_4'} '10.4' {$endif};
   begin
     if Test('Detected compiler version').Assert(versionAccordingToDelticsInc).Equals(DELPHI_VERSION).Failed then
       AbortTestRun;
