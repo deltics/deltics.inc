@@ -1,9 +1,9 @@
 
-{$apptype CONSOLE}
-
-{$i deltics.inc}
+{$define CONSOLE}
 
 program Test;
+
+{$i deltics.inc}
 
 {$ifdef DELPHI7__}
   uses
