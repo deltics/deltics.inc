@@ -1,20 +1,25 @@
 {
-    id: "deltics.inc",
-    summary: "Provides an include file (deltics.inc) to help identify Delphi version and capabilities at compile-time.",
-    tags: ["deltics", "delphi", "versions", "compiler"],
-    compiler: {
-        language: "pascal",
-        product: "delphi",
-        versions: "[1 .. 10.3], !8"
+  "id":"deltics.inc",
+  "version":"",
+  "summary":"Provides an include file (deltics.inc) to help identify Delphi version and capabilities at compile-time.",
+  "tags":[
+    "deltics",
+    "delphi",
+    "versions",
+    "compiler"
+  ],
+  "compiler":{
+      "language":"pascal",
+      "product":"delphi",
+      "versions":"[1 .. 10.3], !8"
     },
-    copyright: "\u00A92019 Jolyon Direnko-Smith",
-    language: "en",
-    content: "source",
-    dependencies: [
-    ],
-    source: {
-        files: [    
-            "src\\deltics.inc"
-        ]
+  "copyright":"\u00A92019 Jolyon Direnko-Smith",
+  "language":"en",
+  "content":"source",
+  "dependencies":[],
+  "source":{
+      "files":[
+        "src\\deltics.inc"
+      ]
     }
 }

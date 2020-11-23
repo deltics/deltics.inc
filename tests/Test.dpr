@@ -15,16 +15,16 @@ program Test;
 
 begin
   TestRun.Environment := 'Delphi ' + Uppercase(DELPHI_VERSION);
-  try
-    TestRun.Test(TCoreFunctionality);
-    TestRun.Test(TVersionDefines, UpperCase(DELPHI_VERSION));
 
-  except
-    on e: Exception do
-      WriteLn('ERROR: ' + e.Message);
-  end;
+  TestRun.Test(TCoreFunctionality);
+  TestRun.Test(TVersionDefines, UpperCase(DELPHI_VERSION));
 
 {$else}
+uses
+  TestConsts in 'TestConsts.pas',
+  TestCore in 'TestCore.pas',
+  TestVersionDefines in 'TestVersionDefines.pas';
+
 begin
   WriteLn('No automated tests are provided for Delphi versions 1 thru 6.  Use at your own risk.');
 {$endif}

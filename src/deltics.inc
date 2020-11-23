@@ -335,13 +335,11 @@
   {$endif}
 
 
-// Who knew you could declare $APPTYPE anywhere !?
+// NOTE: This will only work to determine the compiled EXE type if you $include
+//  this file (or another include file which includes this one) in your DPR.
 //
-//  You can switch between CONSOLE and GUI with a project define
-//  instead of having to put the APPTYPE declaration in the DPR!
-//
-//  AND you can use the CONSOLE define itself to determine when
-//  to include (or not) GUI related code.
+// You can then use the CONSOLE define itself to determine when to include
+//  (or not) GUI related code.
 
 {$ifdef CONSOLE}
   {$APPTYPE CONSOLE}
@@ -368,3 +366,9 @@
     {$define TYPEDADDRESS_ON}
     {$define TypedAddresses}
   {$endif}
+
+
+{$ifdef CPUX64}   {$define 64BIT} {$endif}
+{$ifdef CPUARM64} {$define 64BIT} {$endif}
+{$ifNdef 64BIT}   {$define 32BIT} {$endif}
+
