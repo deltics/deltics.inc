@@ -182,6 +182,12 @@ implementation
       Test('DELPHI10_3 not defined').Assert(COMPILER_VERSION <> DELPHI_10_3);
     {$endif};
 
+    {$ifdef DELPHI10_4}
+      Test('DELPHI10_4 defined').Assert(COMPILER_VERSION = DELPHI_10_4);
+    {$else}
+      Test('DELPHI10_4 not defined').Assert(COMPILER_VERSION <> DELPHI_10_4);
+    {$endif};
+
     // 10.x city name defines
 
     {$ifdef SEATTLE}
@@ -206,6 +212,12 @@ implementation
       Test('RIO defined').Assert(COMPILER_VERSION = DELPHI_10_3);
     {$else}
       Test('RIO not defined').Assert(COMPILER_VERSION <> DELPHI_10_3);
+    {$endif};
+
+    {$ifdef SYDNEY}
+      Test('SYDNEY defined').Assert(COMPILER_VERSION = DELPHI_10_4);
+    {$else}
+      Test('SYDNEY not defined').Assert(COMPILER_VERSION <> DELPHI_10_4);
     {$endif};
   end;
 
@@ -365,6 +377,12 @@ implementation
       Test('__DELPHI10_3 not defined').Assert(COMPILER_VERSION >= DELPHI_10_3);
     {$endif}
 
+    {$ifdef __DELPHI10_4}
+      Test('__DELPHI10_4 defined').Assert(COMPILER_VERSION <= DELPHI_10_4);
+    {$else}
+      Test('__DELPHI10_4 not defined').Assert(COMPILER_VERSION >= DELPHI_10_4);
+    {$endif}
+
     // 10.x city name defines
 
     {$ifdef __SEATTLE}
@@ -389,6 +407,12 @@ implementation
       Test('__RIO defined').Assert(COMPILER_VERSION <= DELPHI_10_3);
     {$else}
       Test('__RIO not defined').Assert(COMPILER_VERSION >= DELPHI_10_3);
+    {$endif}
+
+    {$ifdef __SYDNEY}
+      Test('__SYDNEY defined').Assert(COMPILER_VERSION <= DELPHI_10_4);
+    {$else}
+      Test('__SYDNEY not defined').Assert(COMPILER_VERSION >= DELPHI_10_4);
     {$endif}
   end;
 
@@ -548,6 +572,12 @@ implementation
       Test('DELPHI10_3__ not defined').Assert(COMPILER_VERSION < DELPHI_10_3);
     {$endif}
 
+    {$ifdef DELPHI10_4__}
+      Test('DELPHI10_4__ defined').Assert(COMPILER_VERSION >= DELPHI_10_4);
+    {$else}
+      Test('DELPHI10_4__ not defined').Assert(COMPILER_VERSION < DELPHI_10_4);
+    {$endif}
+
     // 10.x city name defines
 
     {$ifdef SEATTLE__}
@@ -572,6 +602,12 @@ implementation
       Test('RIO__ defined').Assert(COMPILER_VERSION >= DELPHI_10_3);
     {$else}
       Test('RIO__ not defined').Assert(COMPILER_VERSION < DELPHI_10_3);
+    {$endif}
+
+    {$ifdef SYDNEY__}
+      Test('SYDNEY__ defined').Assert(COMPILER_VERSION >= DELPHI_10_4);
+    {$else}
+      Test('SYDNEY__ not defined').Assert(COMPILER_VERSION < DELPHI_10_4);
     {$endif}
   end;
   {$warnings on}
