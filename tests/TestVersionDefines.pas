@@ -397,7 +397,7 @@ implementation
       Test('__BERLIN not defined').Assert(COMPILER_VERSION >= DELPHI_10_1);
     {$endif}
 
-    {$ifdef __SEATTLE}
+    {$ifdef __TOKYO}
       Test('__TOKYO defined').Assert(COMPILER_VERSION <= DELPHI_10_2);
     {$else}
       Test('__TOKYO not defined').Assert(COMPILER_VERSION >= DELPHI_10_2);
