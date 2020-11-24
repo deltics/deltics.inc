@@ -304,6 +304,14 @@
 
 {$endif}
 
+
+// Convenience defines for 32/64-bit detection
+
+{$ifdef CPUX64}   {$define 64BIT} {$endif}
+{$ifdef CPUARM64} {$define 64BIT} {$endif}
+{$ifNdef 64BIT}   {$define 32BIT} {$endif}
+
+
 // Delphi 2005 introduced for-in loops with enumerator support.
 
   {$ifdef DELPHI2005__}
@@ -379,8 +387,4 @@
     {$define TypedAddresses}
   {$endif}
 
-
-{$ifdef CPUX64}   {$define 64BIT} {$endif}
-{$ifdef CPUARM64} {$define 64BIT} {$endif}
-{$ifNdef 64BIT}   {$define 32BIT} {$endif}
 
