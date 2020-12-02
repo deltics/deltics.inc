@@ -20,5 +20,7 @@ pool:
 jobs:
 - template: build.yml@congress
   parameters:
-    x86Versions: [ 2, 3, 4, 5, 6, 7, 2005, 2006, 2007, 2009, 2010, xe, xe2, xe3, xe4, xe5, xe6, xe7, xe8, 10, 10.1, 10.2, 10.3 ]
+    # We override the default x86Versions list because deltics.in does also support 
+    #  versions 2 thru 6 (where-as the default x86 builds only include 7 thru xe )
+    x86Versions: [ 2, 3, 4, 5, 6, 7, 2005, 2006, 2007, 2009, 2010, xe ]
     testArgs: '-delphiVersion:$(delphiVersion)'

@@ -131,6 +131,11 @@
   {$UNDEF UNKNOWN_COMPILER_VERSION}
 {$endif}
 
+{$ifdef VER340} // RAD Studio 10.4 Sydney
+  {$define DELPHI10_4}
+  {$UNDEF UNKNOWN_COMPILER_VERSION}
+{$endif}
+
 (*
   Template for adding support for new versions of Delphi as they come along.
    Don't forget to also update XX__ and __XX section! (below)
@@ -160,6 +165,7 @@
 //  We will subsequently $UNDEFINE those which are not applicable.
 
 {.$define __DELPHIVER}
+{$define __DELPHI10_4}
 {$define __DELPHI10_3}
 {$define __DELPHI10_2}
 {$define __DELPHI10_1}
@@ -188,6 +194,7 @@
 // Now we $define VER__ for the identified VER (version VER and later)
 
 (* {$ifdef DELPHIVER}  {$define DELPHIVER__} {$endif} *)
+{$ifdef DELPHI10_4} {$define DELPHI10_4__}  {$endif}
 {$ifdef DELPHI10_3} {$define DELPHI10_3__}  {$endif}
 {$ifdef DELPHI10_2} {$define DELPHI10_2__}  {$endif}
 {$ifdef DELPHI10_1} {$define DELPHI10_1__}  {$endif}
@@ -218,6 +225,7 @@
 //  itself is UNdefined.
 
 (* {$ifdef DELPHIVER__}   {$define DELPHIVER-1__}  {$undef __DELPHIVER-1}  {$endif} *)
+{$ifdef DELPHI10_4__}  {$define DELPHI10_3__}  {$undef __DELPHI10_3}  {$endif}
 {$ifdef DELPHI10_3__}  {$define DELPHI10_2__}  {$undef __DELPHI10_2}  {$endif}
 {$ifdef DELPHI10_2__}  {$define DELPHI10_1__}  {$undef __DELPHI10_1}  {$endif}
 {$ifdef DELPHI10_1__}  {$define DELPHI10__}    {$undef __DELPHI10}  {$endif}
@@ -261,6 +269,10 @@
 {$ifdef DELPHI10_3__} {$define RIO__} {$endif}
 {$ifdef __DELPHI10_3} {$define __RIO} {$endif}
 
+{$ifdef DELPHI10_4}   {$define SYDNEY}   {$endif}
+{$ifdef DELPHI10_4__} {$define SYDNEY__} {$endif}
+{$ifdef __DELPHI10_4} {$define __SYDNEY} {$endif}
+
 // At this point if we are compiling with Delphi VER:
 //
 //     DELPHIVER     defined
@@ -281,16 +293,24 @@
 
   {$ifdef DELPHI7__}
     // Delphi 7 introduced platform warnings as part of the compatibility with Kylix/C++
-    // 
+    //
     // I disable these by default since the Deltics libraries are (currently) Windows
     //  specific and not intended to be used by C++ developers
 
     {$WARN SYMBOL_PLATFORM      OFF}
     {$WARN UNIT_PLATFORM        OFF}
     {$WARN DUPLICATE_CTOR_DTOR  OFF}
-  {$endif}  
+  {$endif}
 
 {$endif}
+
+
+// Convenience defines for 32/64-bit detection
+
+{$ifdef CPUX64}   {$define 64BIT} {$endif}
+{$ifdef CPUARM64} {$define 64BIT} {$endif}
+{$ifNdef 64BIT}   {$define 32BIT} {$endif}
+
 
 // Delphi 2005 introduced for-in loops with enumerator support.
 
@@ -335,13 +355,11 @@
   {$endif}
 
 
-// Who knew you could declare $APPTYPE anywhere !?
+// NOTE: This will only work to determine the compiled EXE type if you $include
+//  this file (or another include file which includes this one) in your DPR.
 //
-//  You can switch between CONSOLE and GUI with a project define
-//  instead of having to put the APPTYPE declaration in the DPR!
-//
-//  AND you can use the CONSOLE define itself to determine when
-//  to include (or not) GUI related code.
+// You can then use the CONSOLE define itself to determine when to include
+//  (or not) GUI related code.
 
 {$ifdef CONSOLE}
   {$APPTYPE CONSOLE}
@@ -368,3 +386,5 @@
     {$define TYPEDADDRESS_ON}
     {$define TypedAddresses}
   {$endif}
+
+
