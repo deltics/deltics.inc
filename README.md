@@ -1,5 +1,10 @@
+# New in 1.03
+
+* Support for Delphi 10.4
+
+
 # Introduction 
-This library is very small and very simple.  It is a simple include file which provides a set of `$define`d symbols based on the Delphi version at compilation time to help with development of code that needs to support and adapt to multiple versions of Delphi.
+This library is very small and very simple.  It is a simple include file which provides a set of `$define` symbols based on the Delphi version at compilation time to help with development of code that needs to support and adapt to multiple versions of Delphi.
 
 Specific Delphi versions may be detected by testing for a `$define` corresponding to each version:
 
@@ -11,15 +16,15 @@ Specific Delphi versions may be detected by testing for a `$define` correspondin
     Delphi 10 thru 10.n        : DELPHI10, DELPHI10_1 .. DELPHI10_n
                                  (city names are also defined: SEATTLE, BERLIN, TOKYO, RIO etc)
 
-So, for code that depends Delphi 2010 specifically you can write:
+So, for code that should only be compiled when compiling with Delphi 2010, you can write:
 
     {$ifdef DELPHI2010}
       ..
     {$endif}
 
-Knowing that you are compiling with a specific Delphi version is less useful than knowing you are compiling with a version in a range.  In particular, changes in RTL functions are usually introduced at some point and then remain consistent from that point on.  To assist with such cases, additional `$define`s are provided to allow you to test for versions of DElphi up to and including some version or some version of Delphi or later.  These use pre and post-fix double-underscores (`__`) respectively.
+Knowing that you are compiling with a specific Delphi version is less useful than knowing that the compiler is some version _in a range of versions_.  In particular, changes in RTL functions are usually introduced at some point and then remain consistent from that point on, or are removed from some given version.  To assist with such cases, additional `$define` symbols are provided to allow you to test for versions up to and including or later than some version of interest.  These use pre and post-fix double-underscores (`__`) respectively.
 
-So, for code that relies on compilation with any version of Delphi upto and including Delphi 2007:
+e.g. for code that relies on compilation with any version of Delphi upto and including Delphi 2007:
 
     {$ifdef __DELPHI2007}
       ..
@@ -45,6 +50,4 @@ etc
 To use this library simply add a `deltics.inc` reference in your project .duget file and run `duget update` to obtain the latest version available in any of your feeds (duget.org is recommended).
 
 # Build and Test
-The build pipeline for this package compiles a set of tests with every version of Delphi.  These tests use Smoketest 2.0 to exercise the compiler defines introduced by the include file and compare them with the expected results based on the version of Delphi used to compile each set of tests.  This requires that the test runtime is aware of the expected Delphi Version and currently this is required to be passed on the command line when executing the test run.  e.g. when running the tests after building with Delphi XE4:
-
-    test -delphiVersion:xe4
+The build pipeline for this package compiles a set of tests with every version of Delphi from version 2 onward.  These tests use [Smoketest 2.x](https://github.com/deltics/deltics.smoketest) to exercise the compiler defines introduced by the include file and compare them with the expected results based on the version of Delphi used to compile each set of tests.
