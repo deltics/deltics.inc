@@ -336,11 +336,15 @@
   {$endif}
 
 
-// Delphi 2009 introduced the ability to overload on Utf8 strings
+// Delphi 2009 introduced the ability to overload on Utf8 strings and other
+//  discriminated types that previously could not be overloaded
+//  (e.g. Double vs TDatetime)
 
   {$ifdef DELPHI2009__}
     {$define UTF8_OVERLOADABLE}
     {$define Utf8Overloads}
+
+    {$define EnhancedOverloads}
   {$endif}
 
 
