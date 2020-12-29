@@ -287,6 +287,26 @@
 { Some useful additional settings.                                                                 }
 { ------------------------------------------------------------------------------------------------ }
 
+// DEFINE DelticsCompatibilityCheck in your project settings to turn OFF support for language
+//  features not present in all versions of Delphi.  This enables you to test that your code
+//  is not itself dependent on these language features.  If you have provided fallback mechanisms
+//  for versions where these features are not available, you still need to compile with each
+//  version that you intend to support to ensure that your implementation using those features is
+//  valid and correct.
+//
+// NOTE: This doesn't affect the compiler support for these features but any Deltics code which
+//        relies on them will not be available.  So, for example, if your code uses a type helper
+//        in a Deltics library, with DelticsCompatibilityCheck mode DEFINEd, that helper will
+//        not be available and your code will not compile, even in versions where type helpers
+//        are supported in the language.
+
+{$ifdef DelticsCompatibilityCheck}
+  {$define DelticsInlineMethodsOFF}
+  {$define DelticsClassHelpersOFF}
+  {$define DelticsTypeHelpersOFF}
+  {$define DelticsEnhancedOverloadsOFF}
+{$endif}
+
 {$ifdef DELPHI6__}
 
   // Delphi 6 introduced the ability toggle specific warnings on/oof
@@ -323,15 +343,21 @@
 // + Delphi XE3 extended helpers to other types.
 
   {$ifdef DELPHI2006__}
-    {$define CLASS_HELPERS}
-    {$define ClassHelpers}
+    {$ifNdef DelticsInlineMethodsOFF}
+      {$define INLINE_METHODS}
+      {$define InlineMethods}
+    {$endif}
 
-    {$define INLINE_METHODS}
-    {$define InlineMethods}
+    {$ifNdef DelticsClassHelpersOFF}
+      {$define CLASS_HELPERS}
+      {$define ClassHelpers}
+    {$endif}
 
-    {$ifdef DELPHIXE3__}
-      {$define TYPE_HELPERS}
-      {$define TypeHelpers}
+    {$ifNdef DelticsTypeHelpersOFF}
+      {$ifdef DELPHIXE3__}
+        {$define TYPE_HELPERS}
+        {$define TypeHelpers}
+      {$endif}
     {$endif}
   {$endif}
 
@@ -340,11 +366,13 @@
 //  discriminated types that previously could not be overloaded
 //  (e.g. Double vs TDatetime)
 
-  {$ifdef DELPHI2009__}
-    {$define UTF8_OVERLOADABLE}
-    {$define Utf8Overloads}
+  {$ifNdef DelticsEnhancedOverloadsOFF}
+    {$ifdef DELPHI2009__}
+      {$define UTF8_OVERLOADABLE}
+      {$define Utf8Overloads}
 
-    {$define EnhancedOverloads}
+      {$define EnhancedOverloads}
+    {$endif}
   {$endif}
 
 
