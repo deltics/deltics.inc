@@ -11,12 +11,14 @@ program Test;
     Deltics.Smoketest,
     TestConsts in 'TestConsts.pas',
     TestCore in 'TestCore.pas',
-    TestVersionDefines in 'TestVersionDefines.pas';
+    TestVersionDefines in 'TestVersionDefines.pas',
+    TestCompatibilityCheck in 'TestCompatibilityCheck.pas';
 
 begin
   TestRun.Environment := 'Delphi ' + Uppercase(DELPHI_VERSION);
 
   TestRun.Test(TCoreFunctionality);
+  TestRun.Test(TCompatibilityCheck);
   TestRun.Test(TVersionDefines, UpperCase(DELPHI_VERSION));
 
 {$else}
