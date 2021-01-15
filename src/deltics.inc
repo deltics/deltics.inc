@@ -343,6 +343,22 @@
 // + Delphi XE3 extended helpers to other types.
 
   {$ifdef DELPHI2006__}
+    // InlineMethodsSupported will ALWAYS be defined if InlineMethods are supported
+    //  by the compiler version in use.
+    //
+    // InlineMethods will ALSO be defined when inline methods are supported BUT
+    //  may be UNdefined if debug conditional defines are also defined.
+    //
+    // Use {$ifdef InlineMethods} around `inline` declarations to ensure that methods
+    //  are inlined if supported and not being debugged.
+    //
+    // Use {$ifdef InlineMethodsSupported} when conditionally including units in a
+    //  `uses` clause to suppress hints/warnings when using inlined methods in those
+    //  units but which would otherwise not require that unit to be used, whether
+    //  debugging or not.
+
+    {$define InlineMethodsSupported}
+
     {$ifNdef DelticsInlineMethodsOFF}
       {$define INLINE_METHODS}
       {$define InlineMethods}
