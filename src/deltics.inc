@@ -380,15 +380,21 @@
 
 // Delphi 2009 introduced the ability to overload on Utf8 strings and other
 //  discriminated types that previously could not be overloaded
-//  (e.g. Double vs TDatetime)
+//  (e.g. Double vs TDatetime).
+//
+// It also introduced "Advanced Records" (a.k.a Records With Methods),
+//  replacing the long deprecated (but still functioning) "object" types.
 
-  {$ifNdef DelticsEnhancedOverloadsOFF}
-    {$ifdef DELPHI2009__}
+  {$ifdef DELPHI2009__}
+    {$ifNdef DelticsEnhancedOverloadsOFF}
       {$define UTF8_OVERLOADABLE}
       {$define Utf8Overloads}
 
       {$define EnhancedOverloads}
     {$endif}
+
+    {$define AdvancedRecords}
+    {$define RecordsWithMethods}
   {$endif}
 
 
