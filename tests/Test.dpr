@@ -12,7 +12,8 @@ program Test;
     TestConsts in 'TestConsts.pas',
     TestCore in 'TestCore.pas',
     TestVersionDefines in 'TestVersionDefines.pas',
-    TestCompatibilityCheck in 'TestCompatibilityCheck.pas';
+    TestCompatibilityCheck in 'TestCompatibilityCheck.pas',
+    Test.CompilerSupportForLanguageFeatures in 'Test.CompilerSupportForLanguageFeatures.pas';
 
 begin
   TestRun.Environment := 'Delphi ' + Uppercase(DELPHI_VERSION);
@@ -22,6 +23,9 @@ begin
   TestRun.Test(TVersionDefines, UpperCase(DELPHI_VERSION));
 
 {$else}
+
+uses
+  Test.CompilerSupportForLanguageFeatures in 'Test.CompilerSupportForLanguageFeatures.pas';
 
 begin
   WriteLn('No automated tests are provided for Delphi versions 1 thru 6.  Use at your own risk.');
