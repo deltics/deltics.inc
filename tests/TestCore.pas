@@ -13,6 +13,7 @@ interface
       procedure DelphiVersionIsIdentified;
       procedure DelphiVersionIsTheExpectedVersion;
       procedure AdvancedRecordsDefinedCorrectly;
+      procedure GenericsDefinedCorrectly;
     end;
 
 
@@ -35,6 +36,15 @@ implementation
                                       {$else}FALSE{$endif})
                                {$ifdef DELPHI2009__}.IsTrue
                                {$else}.IsFalse{$endif};
+  end;
+
+
+  procedure TCoreFunctionality.GenericsDefinedCorrectly;
+  begin
+    Test('Generics').Assert({$ifdef Generics}TRUE
+                            {$else}FALSE{$endif})
+                            {$ifdef DELPHI2009__}.IsTrue
+                            {$else}.IsFalse{$endif};
   end;
 
 
