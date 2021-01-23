@@ -12,7 +12,8 @@ program Test;
     TestConsts in 'TestConsts.pas',
     TestCore in 'TestCore.pas',
     TestVersionDefines in 'TestVersionDefines.pas',
-    TestCompatibilityCheck in 'TestCompatibilityCheck.pas';
+    TestCompatibilityCheck in 'TestCompatibilityCheck.pas',
+    Test.CompilerSupportForLanguageFeatures in 'Test.CompilerSupportForLanguageFeatures.pas';
 
 begin
   TestRun.Environment := 'Delphi ' + Uppercase(DELPHI_VERSION);
