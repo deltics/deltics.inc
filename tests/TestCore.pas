@@ -12,6 +12,7 @@ interface
     TCoreFunctionality = class(TTest)
       procedure DelphiVersionIsIdentified;
       procedure DelphiVersionIsTheExpectedVersion;
+      procedure AdvancedRecordsDefinedCorrectly;
     end;
 
 
@@ -21,6 +22,20 @@ implementation
   uses
     SysUtils,
     TestConsts;
+
+
+  procedure TCoreFunctionality.AdvancedRecordsDefinedCorrectly;
+  begin
+    Test('AdvancedRecords').Assert({$ifdef AdvancedRecords}TRUE
+                                   {$else}FALSE{$endif})
+                            {$ifdef DELPHI2009__}.IsTrue
+                            {$else}.IsFalse{$endif};
+
+    Test('RecordsWithMethods').Assert({$ifdef RecordsWithMethods}TRUE
+                                      {$else}FALSE{$endif})
+                               {$ifdef DELPHI2009__}.IsTrue
+                               {$else}.IsFalse{$endif};
+  end;
 
 
   procedure TCoreFunctionality.DelphiVersionIsIdentified;
